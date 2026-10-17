@@ -1,6 +1,7 @@
 import Card from "./Card"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { getWeather } from "../../api"
+import WeatherIcon from "../WeatherIcon"
 
 type Props = {
 //   coords: Coords
@@ -915,7 +916,6 @@ export default function HourlyForecast() {
                     },
                 ]
             },
-           
         ]
     }
 }
@@ -936,7 +936,7 @@ export default function HourlyForecast() {
               hour12: true,
             })}
           </p>
-           <img className="size-8" alt="Weather Icon" src={`${hour.condition.icon}`} />
+           <WeatherIcon src={hour.condition.icon}/>
           <p className="2xl:scale-110">{Math.round(hour.temp_f)}°F</p>
         </div>
       ))}

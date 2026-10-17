@@ -1,0 +1,12 @@
+import clsx from "clsx";
+
+type Props={
+    src:string,
+    className?:string
+}
+
+export default function WeatherIcon({src,className}:Props){
+    return (
+        <img className={clsx("size-8", className)} alt="Weather Icon" src={src} />
+    )
+}

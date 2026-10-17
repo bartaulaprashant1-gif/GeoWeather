@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./Card";
+import WeatherIcon from "../WeatherIcon";
 
 type Props={
 
@@ -651,7 +652,7 @@ export default function DailyForecast({}: Props) {
               weekday: "short",
             })}
           </p>
-          <img className="size-8" alt="Weather Icon" src={`${day.day.condition.icon}`} />
+          <WeatherIcon src={day.day.condition.icon}/>
           <p>{Math.round(day.day.avgtemp_f)}°F</p>
           <p className="text-gray-500/75">{Math.round(day.day.mintemp_f)}°F</p>
           <p className="text-gray-500/75">{Math.round(day.day.maxtemp_f)}°F</p>
