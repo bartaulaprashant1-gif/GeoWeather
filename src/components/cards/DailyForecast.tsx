@@ -645,8 +645,8 @@ export default function DailyForecast({}: Props) {
       title="Daily Forecast"
       childrenClassName="flex flex-col gap-4"
     >
-      {demoData?.forecast?.forecastday.map((day) => (
-        <div key={day.date} className="flex justify-between items-center">
+      {demoData?.forecast?.forecastday.map((day, index) => (
+        <div key={index} className="flex justify-between items-center">
           <p className="w-9">
             {new Date(day.date).toLocaleDateString(undefined, {
               weekday: "short",

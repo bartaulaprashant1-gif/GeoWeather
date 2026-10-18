@@ -924,9 +924,9 @@ export default function HourlyForecast() {
       title="Hourly Forecast (48 Hours)"
       childrenClassName="flex gap-6 overflow-x-scroll"
     >
-      {demoData.forecast.forecastday[0].hour.map((hour) => (
+      {demoData.forecast.forecastday[0].hour.map((hour, index) => (
         <div
-          key={hour.time}
+          key={index}
           className="flex flex-col 2xl:justify-between gap-2 items-center p-2"
         >
           <p className="whitespace-nowrap 2xl:scale-110">
