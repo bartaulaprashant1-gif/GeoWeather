@@ -1,9 +1,18 @@
-import { WeatherSchema } from "./schemas/weatherSchemas"
+import { WeatherSchema } from "./schemas/weatherSchemas";
 
-const API_KEY=import.meta.env.VITE_API_KEY
+const API_KEY = import.meta.env.VITE_API_KEY;
 
-export async function getWeather(){
-    const res=await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=London&days=1&aqi=yes&alerts=no`)
-    const data=await res.json()
-    return WeatherSchema.parse(data)
+export async function getWeather({ lat, lon }: { lat: number; lon: number }) {
+  const res = await fetch(
+    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=2&aqi=yes&alerts=no`,
+  );
+  const data = await res.json();
+  const result = WeatherSchema.safeParse(data);
+
+  if (!result.success) {
+    console.error("Zod validation errors:");
+    console.dir(result.error.issues, { depth: null });
+  } else {
+    return result.data
+  }
 }

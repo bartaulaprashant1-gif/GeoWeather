@@ -9,15 +9,15 @@ const ConditionSchema = z.object({
 });
 
 const AirQualitySchema = z.object({
-  co: z.number(),
-  no2: z.number(),
-  o3: z.number(),
-  so2: z.number(),
-  pm2_5: z.number(),
-  pm10: z.number(),
-  "us-epa-index": z.number().int(),
-  "gb-defra-index": z.number().int(),
-});
+  co: z.number().optional(),
+  no2: z.number().optional(),
+  o3: z.number().optional(),
+  so2: z.number().optional(),
+  pm2_5: z.number().optional(),
+  pm10: z.number().optional(),
+  "us-epa-index": z.number().int().optional(),
+  "gb-defra-index": z.number().int().optional(),
+}).optional().nullable();
 
 const AstroSchema = z.object({
   sunrise: z.string(),
@@ -133,7 +133,7 @@ const HourlyWeatherSchema = z.object({
   wetbulb_c: z.number(),
   wetbulb_f: z.number(),
 
-  air_quality: AirQualitySchema,
+  air_quality: AirQualitySchema ,
 
   short_rad: z.number(),
   diff_rad: z.number(),
