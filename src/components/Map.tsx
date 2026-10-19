@@ -2,6 +2,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Coords, LocationCoords } from "../types";
+import { useEffect } from "react";
 
 type Props = {
   coords: Coords;
@@ -16,6 +17,8 @@ type mapCoords = {
   lon?: number;
   longitude?: number;
 };
+
+const mapTilerKey = import.meta.env.VITE_MAPTILER_KEY;
 
 export default function Map({
   coords,
@@ -47,15 +50,15 @@ export default function Map({
             : { lat: coords.lat, lon: coords.lon }
         }
       />
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      {mapType !== "none" && (
       <TileLayer
-        opacity={0.6}
-        url={`https://weathermaps.weatherapi.com/${mapType}/tiles/${new Date().toISOString().slice(0, 10).replaceAll("-", "")}${currentTime}/{z}/{x}/{y}.png`}
+        attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+        url={`https://api.maptiler.com/maps/dataviz-v4-dark/256/{z}/{x}/{y}.png?key=${mapTilerKey}`}
       />
+      {mapType !== "none" && (
+        <TileLayer
+          opacity={0.4}
+          url={`https://weathermaps.weatherapi.com/${mapType}/tiles/${new Date().toISOString().slice(0, 10).replaceAll("-", "")}${currentTime}/{z}/{x}/{y}.png`}
+        />
       )}
       <Marker
         position={
