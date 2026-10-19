@@ -40,5 +40,6 @@ const mapTypes = [
   "tmp2m",
   "precip",
   "pressure",
-  "wind"
+  "wind",
+  "none"
 ];
