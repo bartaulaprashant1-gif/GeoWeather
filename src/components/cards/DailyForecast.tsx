@@ -5,14 +5,15 @@ import type { Coords } from "../../types";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getWeather } from "../../api";
 
-type Props={
-    coords:Coords
+type Props = {
+  coords: Coords;
+  location:string;
 }
 
-export default function DailyForecast({coords}: Props) {
+export default function DailyForecast({coords, location}: Props) {
 const {data}=useSuspenseQuery({
-    queryKey:['weather', coords],
-    queryFn:()=>getWeather({lat:coords.lat, lon:coords.lon})
+    queryKey:['weather', coords, location],
+    queryFn:()=>getWeather({lat:coords.lat, lon:coords.lon, location})
   })
 
   

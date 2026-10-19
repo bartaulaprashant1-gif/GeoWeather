@@ -1,24 +1,31 @@
-import type { Dispatch, SetStateAction } from "react"
+import type { Dispatch, SetStateAction } from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
+} from "../ui/select";
 
 type Props = {
-  location: string
-  setLocation: Dispatch<SetStateAction<string>>
-}
+  location: string;
+  setLocation: Dispatch<SetStateAction<string>>;
+};
 
 export default function LocationDropdown({ location, setLocation }: Props) {
   return (
-    <Select value={location} onValueChange={(value) => setLocation(value)}>
+    <Select
+      value={location}
+      onValueChange={(value) => {
+        if(value!==null){
+          setLocation(value);
+        }
+      }}
+    >
       <SelectTrigger className="w-full xs:w-[180px]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
-      <SelectContent className="z-1001">
+      <SelectContent className="z-100">
         {location === "custom" && (
           <SelectItem value="custom">Custom</SelectItem>
         )}
@@ -29,7 +36,7 @@ export default function LocationDropdown({ location, setLocation }: Props) {
         ))}
       </SelectContent>
     </Select>
-  )
+  );
 }
 
 const locations = [
@@ -45,4 +52,4 @@ const locations = [
   "Madrid",
   "Rome",
   "Lisbon",
-]
+];

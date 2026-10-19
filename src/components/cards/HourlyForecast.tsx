@@ -5,13 +5,14 @@ import WeatherIcon from "../WeatherIcon"
 import type { Coords } from "../../types"
 
 type Props = {
-  coords: Coords
+  coords: Coords;
+  location:string;
 }
 
-export default function HourlyForecast({coords}:Props) {
+export default function HourlyForecast({coords, location}:Props) {
   const {data}=useSuspenseQuery({
-    queryKey:['weather', coords],
-    queryFn:()=>getWeather({lat:coords.lat, lon:coords.lon})
+    queryKey:['weather', coords, location],
+    queryFn:()=>getWeather({lat:coords.lat, lon:coords.lon, location})
   })
   if(!data) return;
   return (

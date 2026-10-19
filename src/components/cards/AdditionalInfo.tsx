@@ -13,12 +13,13 @@ import type { Coords } from "../../types";
 
 type Props = {
   coords: Coords;
+  location:string;
 };
 
-export default function AdditionalInfo({ coords }: Props) {
+export default function AdditionalInfo({ coords,location }: Props) {
   const { data } = useSuspenseQuery({
-    queryKey: ["weather", coords],
-    queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon }),
+    queryKey: ["weather", coords,location],
+    queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon,location }),
   });
   if (!data) return;
   return (
