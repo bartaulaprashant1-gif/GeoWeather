@@ -7,6 +7,7 @@ type Props = {
   coords:Coords,
   onMapClick:(lat:number, lon:number)=>void;
   locationCoords:LocationCoords;
+  mapType:string
 };
 
 type mapCoords={
@@ -16,8 +17,13 @@ type mapCoords={
   longitude?:number;
 }
 
-export default function Map({coords, onMapClick, locationCoords}: Props) {
+export default function Map({coords, onMapClick, locationCoords, mapType}: Props) {
   let {lat, lon}=coords;
+
+  let currentTime=(new Date().getHours()).toString();
+  if(parseInt(currentTime)<10){
+    currentTime=`0${currentTime}`
+  }
   return (
     <MapContainer
     center={locationCoords.latitude!=0 && locationCoords.longitude!=0?[locationCoords.latitude,locationCoords.longitude]:[lat, lon]}
@@ -29,6 +35,7 @@ export default function Map({coords, onMapClick, locationCoords}: Props) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <TileLayer opacity={0.6}  url={`https://weathermaps.weatherapi.com/${mapType}/tiles/${new Date().toISOString().slice(0,10).replaceAll('-', '')}${currentTime}/{z}/{x}/{y}.png`}/>
       <Marker position={locationCoords.latitude!=0 && locationCoords.longitude!=0?[locationCoords.latitude,locationCoords.longitude]:[lat, lon]} />
     </MapContainer>
   );
