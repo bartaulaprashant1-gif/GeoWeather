@@ -7,12 +7,13 @@ import HourlyForecast from "./components/cards/HourlyForecast";
 import CurrentWeather from "./components/cards/CurrentWeather";
 import AdditionalInfo from "./components/cards/AdditionalInfo";
 import Map from "./components/Map";
-import type { Coords } from "./types";
+import type { Coords, LocationCoords } from "./types";
 import LocationDropdown from "./components/dropdowns/LocationDropdown";
 
 function App() {
  const [coords, setCoords] = useState<Coords>({ lat: 27.71, lon: 85.32 })
  const [location, setLocation]=useState('custom')
+ const [locationCoords, setLocationCoords]=useState<LocationCoords>({latitude:0,longitude:0})
 
 
  const onMapClick=(lat:number, lon:number)=>{
@@ -24,8 +25,8 @@ function App() {
     <>
     <div className="flex flex-col gap-8">
       <LocationDropdown location={location} setLocation={setLocation}/>
-      <Map coords={coords} onMapClick={onMapClick}/>
-      <CurrentWeather coords={coords} location={location} />
+      <Map coords={coords} onMapClick={onMapClick} locationCoords={locationCoords} />
+      <CurrentWeather coords={coords} location={location} setLocationCoords={setLocationCoords} />
       <HourlyForecast coords={coords} location={location}/>
       <DailyForecast coords={coords} location={location}/>
       <AdditionalInfo coords={coords} location={location}/>
