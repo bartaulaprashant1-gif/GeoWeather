@@ -20,7 +20,7 @@ const {data}=useSuspenseQuery({
     return (
         <Card
       title="Daily Forecast"
-      childrenClassName="flex flex-col gap-4"
+      childrenClassName="flex flex-col gap-4 pb-6"
     >
       {data?.forecast?.forecastday.map((day, index) => (
         <div key={index} className="flex justify-between items-center">

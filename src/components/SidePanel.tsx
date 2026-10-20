@@ -1,11 +1,10 @@
 import { getWeather } from "@/api";
 import type { Coords } from "../types";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import React, { Suspense, type Dispatch, type SetStateAction } from "react";
+import  { Suspense, type Dispatch, type SetStateAction } from "react";
 import Card from "./cards/Card";
 import { Slider } from "./ui/slider";
 import { clsx } from "clsx";
-import { Button } from "./ui/button";
 import { TooltipContent, Tooltip, TooltipTrigger } from "./ui/tooltip";
 import Information from "/src/assets/information.svg?react";
 import Chevron from "/src/assets/ChevronLeft.svg?react"
@@ -21,8 +20,8 @@ type Props = {
 export default function SidePanel(props: Props) {
   const {isSidePanelOpen, setIsSidePanelOpen}=props
   return (
-    <div className={clsx("fixed top-0 right-0 h-screen w-80 py-8 px-4 shadow-md bg-sidebar z-100 overflow-y-scroll transition-transform duration-300", isSidePanelOpen?'translate-x-0':"translate-x-full")}>
-      <button onClick={()=>setIsSidePanelOpen(!isSidePanelOpen)}>
+    <div className={clsx("fixed top-0 right-0 h-screen w-(--sidebar-width) py-8 px-4 shadow-md bg-sidebar z-100 overflow-y-scroll transition-transform duration-300 lg:translate-x-0", isSidePanelOpen?'translate-x-0':"translate-x-full")}>
+      <button onClick={()=>setIsSidePanelOpen(!isSidePanelOpen)} className="lg:hidden">
         <Chevron className="size-8 invert -ml-2"/>
       </button>
       <Suspense fallback={<SidePanelSkeleton/>}>
