@@ -25,7 +25,7 @@ export default function MapTypeDropdown({ mapType, setMapType }: Props) {
       <SelectTrigger className="w-full xs:w-[180px]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
-      <SelectContent className="z-100">
+      <SelectContent className="z-200">
         {mapTypes.map((map) => (
           <SelectItem key={map} value={map} className={"capitalize"}>
             {map}
