@@ -8,7 +8,6 @@ import UpArrow from "../../assets/uparrow.svg?react";
 import Uv from "../../assets/uv.svg?react";
 import Wind from "../../assets/wind.svg?react";
 import Pressure from "../../assets/pressure.svg?react";
-import { number, transform } from "zod";
 import type { Coords } from "../../types";
 
 type Props = {
