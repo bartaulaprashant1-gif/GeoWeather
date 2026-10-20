@@ -51,6 +51,17 @@
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+::-webkit-scrollbar{
+  width:4px;
+  height:7px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: gray;
+  border-radius:100%;
+}
+::-webkit-scrollbar-track{
+  background:transparent;
+}
 @theme inline {
   --breakpoint-xs: 500px;
   --radius-sm: calc(var(--radius) - 4px);
