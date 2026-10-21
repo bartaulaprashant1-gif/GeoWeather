@@ -9,7 +9,7 @@ export default function DailySkeleton({}: Props) {
           title="Daily Forecast"
           childrenClassName="flex flex-col gap-4"
         >
-          {Array.from({length:7}).map((day, index) => (
+          {Array.from({length:7}).map((_,index) => (
             <div key={index} className="flex justify-between items-center">
               <Skeleton className='w-9'/>
               <Skeleton className='size-8 rounded-full'/>
