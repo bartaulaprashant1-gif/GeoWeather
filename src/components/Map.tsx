@@ -1,8 +1,8 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import type { LatLngExpression } from "leaflet"
 import { useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Coords, LocationCoords } from "../types";
-import { useEffect } from "react";
 
 type Props = {
   coords: Coords;
@@ -32,13 +32,14 @@ export default function Map({
   if (parseInt(currentTime) < 10) {
     currentTime = `0${currentTime}`;
   }
+
+  const center: LatLngExpression =
+    locationCoords.latitude !== 0 && locationCoords.longitude !== 0
+      ? [locationCoords.latitude, locationCoords.longitude]
+      : [lat, lon];
   return (
     <MapContainer
-      center={
-        locationCoords.latitude != 0 && locationCoords.longitude != 0
-          ? [locationCoords.latitude, locationCoords.longitude]
-          : [lat, lon]
-      }
+      center={center}
       zoom={5}
       style={{ width: "100%", height: "500px", zIndex: "50" }}
     >
@@ -79,7 +80,7 @@ function MapClick({
   coords: mapCoords;
 }) {
   const map = useMap();
-  map.panTo([coords.lat, coords.lon]);
+  coords.lat && coords.lon && map.panTo([coords.lat, coords.lon]);
 
   map.on("click", (e: any) => {
     const { latlng } = e;
