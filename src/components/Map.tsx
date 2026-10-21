@@ -1,8 +1,13 @@
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import type { LatLngExpression } from "leaflet"
+import type { LatLngExpression } from "leaflet";
 import { useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Coords, LocationCoords } from "../types";
+import L from "leaflet";
+
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 type Props = {
   coords: Coords;
@@ -37,6 +42,16 @@ export default function Map({
     locationCoords.latitude !== 0 && locationCoords.longitude !== 0
       ? [locationCoords.latitude, locationCoords.longitude]
       : [lat, lon];
+
+  const defaultIcon = L.icon({
+    iconUrl: markerIcon,
+    iconRetinaUrl: markerIcon2x,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
   return (
     <MapContainer
       center={center}
@@ -67,6 +82,7 @@ export default function Map({
             ? [locationCoords.latitude, locationCoords.longitude]
             : [lat, lon]
         }
+        icon={defaultIcon}
       />
     </MapContainer>
   );
